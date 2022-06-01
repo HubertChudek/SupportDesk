@@ -67,14 +67,13 @@ const loginUser = asyncHandler(async (req, res) => {
         res.status(401)
         throw new Error('Invalid credentials')
     }
-
 })
 
 // @desc Get current user
 // @route /api/users/me
 // @access Private
-const getMe = asyncHandler(async (req, res) => {
-    res.send('Me')
+const getMe = asyncHandler(async (req, res, next) => {
+    res.status(200).json(req.user)
 })
 
 // Generate token
