@@ -1,8 +1,15 @@
 const express = require('express')
-const dotenv = require('dotenv').config
+const colors = require('colors')
+const dotenv = require('dotenv').config()
+const connectDB = require('./config/db')
 const {errorHandler} = require('./middleware/errorMiddleware')
+
 const PORT = process.env.PORT || 5000
 
+//Connect to databse
+connectDB()
+
+//Initialize Express application
 const app = express()
 
 //Middleware config - parsers
