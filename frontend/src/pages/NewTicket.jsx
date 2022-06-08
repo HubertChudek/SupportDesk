@@ -44,7 +44,7 @@ function NewTicket() {
             </select>
           </div>
           <div className="form-group">
-            <label htmlFor="product">Product</label>
+            <label htmlFor="description">Description of the issue</label>
             <textarea
               name="description"
               id="description"
@@ -54,8 +54,10 @@ function NewTicket() {
               onChange={(e) => setDescription(e.target.value)}
             ></textarea>
           </div>
-        </form>
+          <div className="form-group">
         <button className="btn btn-block">Submit</button>
+          </div>
+        </form>
       </section>
     </>
   )
