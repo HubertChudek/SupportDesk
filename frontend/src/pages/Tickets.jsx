@@ -15,7 +15,7 @@ function Tickets() {
         dispatch(reset())
       }
     }
-  })
+  }, [dispatch, isSuccess])
 
   useEffect(() => {
     dispatch(getTickets())
