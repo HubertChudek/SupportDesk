@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { getTicket, reset } from '../features/tickets/ticketSlice'
-import { useParams } from 'react-router-dom'
+import { getTicket, closeTicket, reset } from '../features/tickets/ticketSlice'
+import { useParams, useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import Spinner from '../components/Spinner'
 import BackButton from '../components/BackButton'
@@ -11,6 +11,7 @@ function Ticket() {
 
   const params = useParams()
   const { ticketId } = useParams()
+  const navigate = useNavigate()
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -22,6 +23,13 @@ function Ticket() {
     // eslint-disable-next-line
   }, [isError, message, ticketId]) // Supposedly passing dispatch here causes loop.
   //                                  Didn't happen, but went with course recommendation to silence the warning anyways.
+
+  // Close ticket
+  const onTicketClose = () => {
+    dispatch(closeTicket(ticketId))
+    toast.success('Ticket Closed')
+    navigate('/tickets')
+  }
 
   if (isLoading) {
     return <Spinner />
@@ -47,6 +55,11 @@ function Ticket() {
           <p>{ticket.description}</p>
         </div>
       </header>
+      {ticket.status !== 'closed' && (
+        <button onClick={onTicketClose} className="btn btn-block btn-danger">
+          Close Ticket
+        </button>
+      )}
     </div>
   )
 }
