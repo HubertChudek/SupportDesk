@@ -7,9 +7,10 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node backend/server.js",
     "server": "nodemon backend/server.js",
-    "client": "npm start --prefix frontend"
+    "client": "npm start --prefix frontend",
+    "heroku-postbuld": "NPM_CONFIG_PRODUCTION=false npm instal --prefix frontend && npm run build --prefix frontend"
   },
-  "author": "HubiSzubi",
+  "author": "Hubert Chudek",
   "license": "MIT",
   "dependencies": {
     "bcryptjs": "^2.4.3",
